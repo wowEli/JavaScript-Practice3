@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>주사위 게임</title>
+<style type="text/css">
+#title {
+	width: 500px;
+	height: 50px;
+	background-color: lightpink;
+	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+	margin: 0 auto;
+}
+
+#content {
+	width: 500px;
+	height: 400px;
+	background-color: lightgreen;
+	margin: 0 auto;
+}
+
+#com {
+	float: left;
+}
+
+#guest {
+	float: right;
+}
+</style>
+</head>
+<body>
+
+	<div id="title">게임시작!</div>
+	<div id="content">
+		<img id="com" alt="컴퓨터" src="images/dice-1.png"> <img id="guest"
+			alt="사용자" src="images/dice-1.png">
+	</div>
+
+	<script type="text/javascript">
+   document.querySelector('#title').onclick=function(){ // 콜백형식
+      if(this.firstChild.nodeValue=='게임시작!'){ // firstChild 첫번째 요소는 태그사이 쓰여진 글자내용이다
+         this.firstChild.nodeValue='결과 확인하기'; // .equals == nodeValue=''
+         this.style.backgroundColor='lightblue';
+      }
+      else{
+         this.firstChild.nodeValue='게임시작!';
+         this.style.backgroundColor='lightpink';
+      }
+   }
+   function startGame(){
+	      document.querySelector('#com').src='images/dice.gif';
+	      document.querySelector('#guest').src='images/dice.gif';
+	   }
+	   
+	   function endGame(){
+	      var com=Math.floor(Math.random()*6)+1;
+	      var guest=Math.floor(Math.random()*6)+1;
+	      document.querySelector('#com').src='images/dice-'+com+'.png';
+	      document.querySelector('#guest').src='images/dice-'+guest+'.png';
+	      setTimeout(function(){
+	         if(com<guest){
+	            alert('이겼다!!! :D');
+	         }
+	         else if(com==guest){
+	            alert('비김 ㅇㅅㅇ');
+	         }
+	         else{
+	            alert('ㅜㅠ...');
+	         }
+	      },1000); // setTimeout 시간 뒤에 함수 한 번 실행
+	   }
+
+</script>
+
+</body>
+</html>
